@@ -1725,10 +1725,12 @@ Function UpdateNPCs()
 									GiveAchievement(Achv049)
 									
 									;Playing a sound after detecting the player
-									If n\PrevState <= 1 And ChannelPlaying(n\SoundChn2)=False
-										If n\Sound2 <> 0 Then FreeSound_Strict(n\Sound2)
-										n\Sound2 = LoadSound_Strict("SFX\SCP\049\Spotted"+Rand(1,7)+".ogg")
-										n\SoundChn2 = LoopSound2(n\Sound2,n\SoundChn2,Camera,n\obj)
+									If n\PrevState <= 1 And ChannelPlaying(n\SoundChn3)=False ;(n\SoundChn2)
+										If n\Sound3 <> 0 Then FreeSound_Strict(n\Sound3) ;If n\Sound2
+										;n\Sound2 = LoadSound_Strict("SFX\SCP\049\Spotted"+Rand(1,7)+".ogg")
+										;n\SoundChn2 = LoopSound2(n\Sound2,n\SoundChn2,Camera,n\obj)
+                                        n\Sound3 = LoadSound_Strict("SFX\SCP\049"Spotted"+Rand(1,7)+".ogg")
+                                        n\SoundChn3 = LoopSound2(n\Sound3,n\SoundChn3,Camera,n\obj)
 										n\PrevState = 2
 									EndIf
 									n\PathStatus = 0
@@ -1870,11 +1872,11 @@ Function UpdateNPCs()
 											If n\PrevState = 0 And ChannelPlaying(n\SoundChn2)=False
 												If n\Sound2 <> 0 Then FreeSound_Strict(n\Sound2)
 												If Rand(30)=1
-													n\Sound2 = LoadSound_Strict("SFX\SCP\049\Searching7.ogg")
+													n\Sound3 = LoadSound_Strict("SFX\SCP\049\Searching7.ogg") ;n\Sound2
 												Else
-													n\Sound2 = LoadSound_Strict("SFX\SCP\049\Searching"+Rand(1,6)+".ogg")
+													n\Sound3 = LoadSound_Strict("SFX\SCP\049\Searching"+Rand(1,6)+".ogg") ;n\Sound2
 												EndIf
-												n\SoundChn2 = LoopSound2(n\Sound2,n\SoundChn2,Camera,n\obj)
+												n\SoundChn3 = LoopSound2(n\Sound3,n\SoundChn3,Camera,n\obj) ;n\SoundChn2
 												n\PrevState = 1
 											EndIf
 											
