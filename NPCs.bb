@@ -1997,9 +1997,12 @@ Function UpdateNPCs()
 									EndIf
 								EndIf
 								
-								If ChannelPlaying(n\SoundChn2)
-									UpdateSoundOrigin(n\SoundChn2,Camera,n\obj)
-								EndIf
+								;If ChannelPlaying(n\SoundChn2)
+									;UpdateSoundOrigin(n\SoundChn2,Camera,n\obj)
+								;EndIf
+                                If ChannelPlaying(n\SoundChn3)
+                                    UpdateSoundOrigin(n\SoundChn3,Camera,n\obj)
+                                EndIf
 							ElseIf (Not n\Idle)
 								If ChannelPlaying(n\SoundChn) Then
 									StopChannel(n\SoundChn)
@@ -2137,9 +2140,12 @@ Function UpdateNPCs()
 								EndIf
 							EndIf
 							
-							If ChannelPlaying(n\SoundChn2)
-								UpdateSoundOrigin(n\SoundChn2,Camera,n\obj)
-							EndIf
+							;If ChannelPlaying(n\SoundChn2)
+								;UpdateSoundOrigin(n\SoundChn2,Camera,n\obj)
+							;EndIf
+                            If ChannelPlaying(n\SoundChn3)
+                                 UpdateSoundOrigin(n\SoundChn3,Camera,n\obj)
+                            EndIf
 							;[End Block]
 					End Select
 				EndIf
