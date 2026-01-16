@@ -1729,7 +1729,7 @@ Function UpdateNPCs()
 										If n\Sound3 <> 0 Then FreeSound_Strict(n\Sound3) ;If n\Sound2
 										;n\Sound2 = LoadSound_Strict("SFX\SCP\049\Spotted"+Rand(1,7)+".ogg")
 										;n\SoundChn2 = LoopSound2(n\Sound2,n\SoundChn2,Camera,n\obj)
-                                        n\Sound3 = LoadSound_Strict("SFX\SCP\049"Spotted"+Rand(1,7)+".ogg")
+                                        n\Sound3 = LoadSound_Strict("SFX\SCP\049\Spotted"+Rand(1,7)+".ogg")
                                         n\SoundChn3 = LoopSound2(n\Sound3,n\SoundChn3,Camera,n\obj)
 										n\PrevState = 2
 									EndIf
