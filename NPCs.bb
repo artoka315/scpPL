@@ -1789,9 +1789,9 @@ Function UpdateNPCs()
 													Kill()
 												EndIf
 												PlaySound_Strict HorrorSFX(13)
-												If n\Sound2 <> 0 Then FreeSound_Strict(n\Sound2)
-												n\Sound2 = LoadSound_Strict("SFX\SCP\049\Kidnap"+Rand(1,2)+".ogg")
-												n\SoundChn2 = LoopSound2(n\Sound2,n\SoundChn2,Camera,n\obj)
+												If n\Sound3 <> 0 Then FreeSound_Strict(n\Sound3) ;n\Sound2
+												n\Sound3 = LoadSound_Strict("SFX\SCP\049\Kidnap"+Rand(1,2)+".ogg") ;n\Sound2
+												n\SoundChn3 = LoopSound2(n\Sound2,n\SoundChn3,Camera,n\obj) ;n\SoundChn2
 												n\State = 3
 											EndIf										
 										EndIf
