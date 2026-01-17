@@ -1377,20 +1377,43 @@ Function UpdateNPCs()
 										
 										If n\Target=Null Then
 											If (Not GodMode) Then 
-												PlaySound_Strict DamageSFX(4)
-												
 												pvt = CreatePivot()
 												CameraShake = 30
 												BlurTimer = 2000
 												DeathMSG = "A large amount of blood found in [DATA REDACTED]. DNA indentified as Subject D-9341. Most likely [DATA REDACTED] by SCP-096."
-												Kill()
-												KillAnim = 1
+												;Kill()
+												
+												n\State5 = n\State5 + FPSfactor
+												
+												tempF# = point_direction(EntityX(Collider,True),EntityZ(Collider,True),EntityX(n\Collider, True),EntityZ(n\Collider,True))
+												tempF2# = EntityYaw(Collider)
+												tempF3# = angleDist(tempF+90+Sin(WrapAngle(n\State4/10)),tempF2)
+												TurnEntity Collider, 0,tempF3/4,0,True
+												tempF# = Abs(point_distance(EntityX(Collider,True),EntityZ(Collider,True),EntityX(n\Collider,True),EntityZ(n\Collider,True)))
+												tempF2# = -60.0 * Min(Max((2.0-tempF)/2.0,0.0),1.0)
+												
+												PositionEntity n\obj2,EntityX(n\Collider),EntityY(n\Collider) + 1,EntityZ(n\Collider)
+												
+												PositionEntity Camera, EntityX#(n\Collider),EntityY#(n\Collider),EntityZ#(n\Collider)
+												RotateEntity Camera,0,EntityYaw#(n\Collider),0
+												MoveEntity Camera, 0,0,0.7
+												PointEntity Camera, n\obj2
+												
+												If n\State5 > 30 Then
+													PainFlash = 5
+													EntityTexture(n\obj, TSG_Bloody)
+													FallTimer = Min(-1, FallTimer)
+													PlaySound_Strict DamageSFX(4)
+													Kill()
+													KillAnim = 0
+												EndIf
+												
 												For i = 0 To 6
 													PositionEntity pvt, EntityX(Collider)+Rnd(-0.1,0.1),EntityY(Collider)-0.05,EntityZ(Collider)+Rnd(-0.1,0.1)
 													TurnEntity pvt, 90, 0, 0
 													EntityPick(pvt,0.3)
 													
-													de.Decals = CreateDecal(Rand(15,16), PickedX(), PickedY()+0.005, PickedZ(), 90, Rand(360), 0)
+													de.Decals = CreateDecal(Rand(DECAL_BLOOD_DROP_1,DECAL_BLOOD_DROP_2), PickedX(), PickedY()+0.005, PickedZ(), 90, Rand(360), 0)
 													de\Size = Rnd(0.2,0.6) : EntityAlpha(de\obj, 1.0) : ScaleSprite de\obj, de\Size, de\Size
 												Next
 												FreeEntity pvt
