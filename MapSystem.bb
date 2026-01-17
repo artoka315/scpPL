@@ -6803,7 +6803,7 @@ Function UpdateSecurityCams()
 							FreeEntity pvt
 							If (sc\CoffinEffect=1 Or sc\CoffinEffect=3) And (Not Wearing714) Then
 								If Sanity < - 800 Then
-									If Rand(3) = 1 Then EntityTexture(sc\ScrOverlay, MonitorTexture)
+									If Rand(3) = 1 Then EntityTexture(sc\ScrOverlay, MonitorRec)
 									If Rand(6) < 5 Then
 										EntityTexture(sc\ScrOverlay, GorePics(Rand(0, 5)))
 										If sc\PlayerState = 1 Then PlaySound_Strict(HorrorSFX(1))
@@ -6820,7 +6820,7 @@ Function UpdateSecurityCams()
 										VomitTimer = 1
 									EndIf
 								ElseIf Sanity < - 500
-									If Rand(7) = 1 Then EntityTexture(sc\ScrOverlay, MonitorTexture)
+									If Rand(7) = 1 Then EntityTexture(sc\ScrOverlay, MonitorRec)
 									If Rand(50) = 1 Then
 										EntityTexture(sc\ScrOverlay, GorePics(Rand(0, 5)))
 										If sc\PlayerState = 0 Then PlaySound_Strict(HorrorSFX(0))
@@ -6828,14 +6828,14 @@ Function UpdateSecurityCams()
 										If sc\CoffinEffect=3 And Rand(100)=1 Then sc\CoffinEffect=2 : sc\PlayerState = Rand(10000, 20000)
 									End If
 								Else
-									EntityTexture(sc\ScrOverlay, MonitorTexture)
+									EntityTexture(sc\ScrOverlay, MonitorRec)
 								EndIf
 							EndIf
 						EndIf
 					Else
 						If sc\InSight Then
 							If (Wearing714) Or (WearingHazmat=3) Or (WearingGasMask=3) Then
-								EntityTexture(sc\ScrOverlay, MonitorTexture)
+								EntityTexture(sc\ScrOverlay, MonitorRec)
 							EndIf
 						EndIf
 					EndIf
@@ -6852,7 +6852,7 @@ Function UpdateSecurityCams()
 							
 						
 					If (MilliSecs2() Mod sc\PlayerState) >= Rand(600) Then
-						If (MilliSecs2() Mod 1350) < 800 And PlayerRoom\RoomTemplate\Name$ <> "coffin"
+						If (MilliSecs2() Mod 1350) < 800
 							EntityTexture(sc\ScrOverlay, MonitorTexture)
 						Else
 							EntityTexture(sc\ScrOverlay, MonitorRec)
