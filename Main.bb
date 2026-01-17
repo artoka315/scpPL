@@ -10707,6 +10707,17 @@ Function Use294()
 				
 				If Input294<>""
 					Local loc% = GetINISectionLocation("DATA\SCP-294.ini",Input294)
+				Else
+					Select Input294
+						Case "Lifeforce"
+							loc = GetINIString2("DATA\SCP-294.ini", "Lifeforce", "dispensesound")
+						Case "God Particles"
+							loc = GetINIString2("DATA\SCP=294.ini", "God Particles", "dispensesound")
+						Case "Milk"
+							loc = GetINIString2("DATA\SCP=294.ini", "Milk", "dispensesound")
+						Case "Cola"
+							loc = GetINIString2("DATA\SCP=294.ini", "Cola", "dispensesound")
+					End Select
 				EndIf
 				
 				If loc > 0 Then
