@@ -6852,7 +6852,7 @@ Function UpdateSecurityCams()
 							
 						
 					If (MilliSecs2() Mod sc\PlayerState) >= Rand(600) Then
-						If (MilliSecs2() Mod 1350) < 800 And PlayerRoom\RoomTemplate\Name$ = "coffin"
+						If (MilliSecs2() Mod 1350) < 800 And PlayerRoom\RoomTemplate\Name$ <> "coffin"
 							EntityTexture(sc\ScrOverlay, MonitorTexture)
 						Else
 							EntityTexture(sc\ScrOverlay, MonitorRec)
