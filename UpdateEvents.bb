@@ -10140,7 +10140,7 @@ Function UpdateDimension1499()
 								;EndIf
 							EndIf
 							If e\Sound2<>0 Then
-								e\SoundCHN2 = LoopSound2(e\Sound2,e\SoundCHN2,Camera,e\room\Levers[0],10,MusicVolume)
+								e\SoundCHN2 = LoopSound2(e\Sound2,e\SoundCHN2,Camera,e\room\Objects[0],10,MusicVolume) ;e\room\Levers[0]
 							EndIf
 						Else
 							ShouldPlay = 19
