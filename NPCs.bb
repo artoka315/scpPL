@@ -1220,7 +1220,11 @@ Function UpdateNPCs()
 								ShouldPlay = 66
 								If n\Frame<259 Then
 									PositionEntity n\Collider, EntityX(n\Collider), n\PrevY-0.15, EntityZ(n\Collider)
-									PointEntity n\obj, Collider
+									If n\Target = Null
+										PointEntity n\obj, Collider
+									Else
+										PointEntity n\obj, n\Target\Collider
+									EndIf
 									RotateEntity (n\Collider, 0, CurveValue(EntityYaw(n\obj),EntityYaw(n\Collider),100.0), 0, True)
 									
 									AnimateNPC(n, 110, 259, 0.15, False)
@@ -1266,7 +1270,11 @@ Function UpdateNPCs()
 										
 										n\CurrSpeed = CurveValue(n\Speed,n\CurrSpeed,10.0)
 										
-										PointEntity n\obj, Collider
+										If n\Target = Null And (Not NoTarget)
+											PointEntity n\obj, Collider
+										Else
+											PointEntity n\obj, n\Target\Collider
+										EndIf
 										RotateEntity n\Collider, 0, CurveAngle(EntityYaw(n\obj), EntityYaw(n\Collider), 10.0), 0
 										
 										If KillTimer >= 0 Then
@@ -1289,7 +1297,11 @@ Function UpdateNPCs()
 										
 										n\PathTimer = Max(n\PathTimer-FPSfactor,0)
 										If n\PathTimer =< 0 Then
-											n\PathStatus = FindPath (n, EntityX(Collider,True), EntityY(Collider,True), EntityZ(Collider,True))
+											If n\Target = Null
+												n\PathStatus = FindPath (n, EntityX(Collider,True), EntityY(Collider,True), EntityZ(Collider,True))
+											Else
+												n\PathStatus = FindPath (n, EntityX(n\Target\Collider,True), EntityY(n\Target\Collider,True), EntityZ(n\Target\Collider,True))
+											EndIf
 											n\PathTimer = 70*10
 										EndIf
 									Else 
@@ -1351,7 +1363,11 @@ Function UpdateNPCs()
 									;If Floor(AnimTime(n\obj)) = 43 Then SetAnimTime(n\obj, 43)
 									
 									If KillTimer >= 0 And FallTimer >= 0 Then
-										PointEntity n\obj, Collider
+										If n\Target = Null
+											PointEntity n\obj, Collider
+										Else
+											PointEntity n\obj, n\Target\Collider
+										EndIf
 										RotateEntity n\Collider, 0, CurveAngle(EntityYaw(n\obj), EntityYaw(n\Collider), 10.0), 0										
 										
 										If Ceil(n\Frame) = 110 And (Not GodMode) Then
@@ -1436,6 +1452,16 @@ Function UpdateNPCs()
 								EndIf
 							EndIf
 						End If
+
+                        For n2.NPCs = Each NPCs
+							If n2\NPCtype = NPCtypeMTF
+								If OtherNPCSeesMeNPC(n2,n)
+									If EntityVisible(n\Collider,n2\Collider)
+										n\Target = n2
+									EndIf
+								EndIf
+							EndIf
+						Next
 						
 						ResetEntity(n\Collider)
 						n\DropSpeed = 0
