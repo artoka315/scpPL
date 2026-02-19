@@ -8400,6 +8400,7 @@ Function UpdateEvents()
 					If e\EventState < 17*70 Then
 						If	e\EventState+FPSfactor => 17*70 Then LoadEventSound(e,"SFX\SCP\682\Roar.ogg") : e\SoundCHN = PlaySound_Strict(e\Sound) ;e\Sound = LoadSound_Strict("SFX\SCP\682\Roar.ogg")
 						If e\EventState > 17*70 - 3*70 Then CameraShake = 0.5
+                        If e\EventState < 17*70 - 6.0*70 And e\EventState > 17*70 - 7.3*70 Then CameraShake = 0.4
 						If e\EventState < 17*70 - 7.5*70 And e\EventState > 17*70 - 11*70 Then CameraShake = 2.0				
 						If e\EventState < 70 Then 
 							If e\Sound<>0 Then FreeSound_Strict (e\Sound) 
