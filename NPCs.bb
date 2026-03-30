@@ -2097,7 +2097,7 @@ Function UpdateNPCs()
 									GiveAchievement(Achv049)
 									
 									;Playing a sound after detecting the player
-									If n\PrevState <= 1 And ChannelPlaying(n\SoundChn3)=False ;n\SoundChn2
+									If n\Speech <= 1 <= 1 And ChannelPlaying(n\SoundChn3)=False ;n\SoundChn2
 										If n\Sound3 <> 0 Then FreeSound_Strict(n\Sound3) ;n\Sound2
 										;n\Sound2 = LoadSound_Strict("SFX\SCP\049\Spotted"+Rand(1,7)+".ogg")
 										;n\SoundChn2 = LoopSound2(n\Sound2,n\SoundChn2,Camera,n\obj)
@@ -2125,9 +2125,9 @@ Function UpdateNPCs()
 											BlurTimer = BlurTimer+FPSfactor*2.5
 											If BlurTimer>250 And BlurTimer-FPSfactor*2.5 <= 250 And n\PrevState<>3 Then
 												If n\SoundChn2 <> 0 Then StopChannel(n\SoundChn2)
-												n\SoundChn2 = PlaySound_Strict(LoadTempSound("SFX\SCP\049\TakeOffHazmat.ogg"))
+												n\SoundChn3 = PlaySound_Strict(LoadTempSound("SFX\SCP\049\TakeOffHazmat.ogg"))
 												n\State = 6
-												n\PrevState=3
+												n\Speech=3
 											ElseIf BlurTimer => 500
 												For i = 0 To MaxItemAmount-1
 													If Inventory(i)<>Null Then
@@ -2172,7 +2172,7 @@ Function UpdateNPCs()
 												PlaySound_Strict HorrorSFX(13)
 												If n\Sound2 <> 0 Then FreeSound_Strict(n\Sound2)
 												n\Sound2 = LoadSound_Strict("SFX\SCP\049\Kidnap"+Rand(1,2)+".ogg")
-												n\SoundChn2 = LoopSound2(n\Sound2,n\SoundChn2,Camera,n\obj)
+												n\SoundChn3 = LoopSound2(n\Sound2,n\SoundChn2,Camera,n\obj)
 												n\State = 3
 											EndIf										
 										EndIf
@@ -2180,7 +2180,7 @@ Function UpdateNPCs()
 										n\CurrSpeed = CurveValue(n\Speed, n\CurrSpeed, 20.0)
 										MoveEntity n\Collider, 0, 0, n\CurrSpeed * FPSfactor	
 										
-										If n\PrevState = 3 Then n\PrevState = 2
+										If n\Speech = 3 Then n\Speech = 2
 										
 										If dist < 3.0 Then
 											AnimateNPC(n, Max(Min(AnimTime(n\obj),428.0),387), 463.0, n\CurrSpeed*38)
@@ -2258,13 +2258,13 @@ Function UpdateNPCs()
 													n\Sound3 = LoadSound_Strict("SFX\SCP\049\Searching"+Rand(1,6)+".ogg") ;n\Sound2
 												EndIf
 												n\SoundChn3 = LoopSound2(n\Sound3,n\SoundChn3,Camera,n\obj) ;n\Sound2
-												n\PrevState = 1
+												n\Speech = 1
 											EndIf
 											
 											;Resetting the "PrevState" value randomly, to make 049 talking randomly 
-											If Rand(600)=1 And ChannelPlaying(n\SoundChn3)=False Then n\PrevState = 0 ;n\SoundChn2
+											If Rand(600)=1 And ChannelPlaying(n\SoundChn3)=False Then n\Speech = 0 ;n\SoundChn2
 											
-											If n\PrevState > 1 Then n\PrevState = 1
+											If n\Speech > 1 Then n\Speech = 1
 										EndIf
 									Else ;No Path to the player found - stands still and tries to find a path
 										;[Block]
