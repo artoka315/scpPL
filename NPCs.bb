@@ -50,6 +50,11 @@ Type NPCs
 	Field IgnorePlayer%
 	
 	Field WentToPD% = False
+
+    Field FaceSeen% = False
+	Field Cured% = False
+	Field Containing% = False
+	Field Speech%
 	
 	Field ManipulateBone%
 	Field ManipulationType%
